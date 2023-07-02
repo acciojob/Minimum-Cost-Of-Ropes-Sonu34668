@@ -1,16 +1,22 @@
-function minimumCostOfRopes(ropes) {
-  // Create a min heap of rope lengths
-  const heap = new MinHeap(ropes);
-  
-  // Connect ropes until only one rope remains
-  let cost = 0;
-  while (heap.size() > 1) {
-    const rope1 = heap.extract(); // Get the shortest rope
-    const rope2 = heap.extract(); // Get the second shortest rope
-    const newRope = rope1 + rope2; // Connect the two ropes
-    cost += newRope; // Add the cost of connecting the two ropes
-    heap.insert(newRope); // Insert the new rope back into the heap
-  }
-  
-  return cost;
+function calculateMinCost() {
+  //your code here
+  let string = document.getElementById("rope-lengths").value
+	
+	let arr = string.split(",");
+	let finalValue =0;
+	while(arr.length > 1){
+		arr.sort((a,b) =>{return(a-b)});
+		let value = parseInt (arr.shift());
+		let value1 = parseInt(arr.shift());
+		let mainValue = value+value1;
+		finalValue = finalValue + mainValue;
+		arr.push(mainValue);
+		
+	}
+  let result = document.getElementById("result");
+	result.innerText = finalValue;
+	return finalValue;
+			
 }
+  
+  
