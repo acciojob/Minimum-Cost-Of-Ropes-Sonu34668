@@ -55,19 +55,35 @@
 
 // document.getElementById("result").innerHTML = minCost;
 
-function calculateMinCost() {
-  const roper= document.getElementById("rope-lengths")
-	let lenarr= (roper.value).split(',')
-	let sum=0;
-	let fs= lenarr.map(x => Number(x))
-	let gh=0
-	while(fs.length!=1){
-		fs.sort(function(a,b){return a-b})
-		sum=fs[0]+fs[1]
-		fs[1]=sum
-		fs.shift()
-		gh=gh+sum
-	}
-	const reser= document.getElementById("result")
-	reser.innerText= gh
-}  
+
+function minCost(arr,n)
+{
+    // Create a priority queue
+        let pq = [];
+   
+        // Adding items to the pQueue
+        for (let i = 0; i < n; i++) {
+            pq.push(arr[i]);
+        }   
+           
+        pq.sort(function(a,b){return a-b;});
+         
+        // Initialize result
+        let res = 0;
+   
+        // While size of priority queue
+        // is more than 1
+        while (pq.length > 1) {
+            // Extract shortest two ropes from pq
+            let first = pq.shift();
+            let second = pq.shift();
+   
+            // Connect the ropes: update result
+            // and insert the new rope to pq
+            res += first + second;
+            pq.push(first + second);
+            pq.sort(function(a,b){return a-b;});
+        }
+   
+        return res;
+}
