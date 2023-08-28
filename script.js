@@ -19,7 +19,7 @@
 			
 // }
   
-  function calculateMinCost(arr, n) {
+function calculateMinCost(arr, n) {
   // Create a min-heap to store the ropes.
   const heap = new PriorityQueue();
   for (let i = 0; i < n; i++) {
@@ -45,3 +45,12 @@
   // Return the minimum cost.
   return minCost;
 }
+
+// Driver code
+const input = document.getElementById("input").value;
+const arr = input.split(",");
+const n = arr.length;
+
+const minCost = calculateMinCost(arr, n);
+
+document.getElementById("result").innerHTML = minCost;
